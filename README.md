@@ -6,4 +6,4 @@ readme
 
 codeowners
 
-secrets
+secrets in repo
