@@ -1,0 +1,33 @@
+name: Generate Release Notes
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on tag creation
+
+jobs:
+  generate-release-notes:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      # Add steps to generate release notes using your preferred method/script
+
+      # Example: Generate release notes using a custom script
+      - name: Generate Release Notes
+        run: ./generate_release_notes.sh ${{ github.ref }}
+
+      # Add steps to publish release notes to desired location (e.g., file, GitHub release page)
+
+      # Example: Commit and push release notes back to the repository
+      - name: Commit Release Notes
+        run: |
+          git config --local user.email "himajareddy2016@gmail.com"
+          git config --local user.name "Challapalle Himaja"
+          git add RELEASE_NOTES.md
+          git commit -m "Add release notes for ${{ github.ref }}"
+          git push origin HEAD:main
+      
+      # Add steps for notification (optional)
